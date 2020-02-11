@@ -1,12 +1,18 @@
 var faker = require('faker');
-
+var db = require('./database.json');
 var database = {
-  products: []
+  ...db
 };
+var item = database.products.pop();
+var id = item.id;
 
-for (var i = 1; i <= 300; i++) {
+faker.locale = "ru";
+//faker.setLocale("ru"); //default en
+
+for (var i = 1; i <= 20; i++) {
+  id += 1;
   database.products.push({
-    id: i,
+    id: id,
     name: faker.commerce.productName(),
     description: faker.lorem.sentences(),
     price: faker.commerce.price(),
